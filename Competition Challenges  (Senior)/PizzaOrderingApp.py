@@ -41,19 +41,23 @@ print("Here are our pizza options")
 pizza = Order()
 pizza.display_menu()
 
-while True:
-    name = input("Enter pizza name or type \"done\" to finsish your order: ")
-    name = name.lower()
-    if name == 'done':
-        curr = pizza.calculate_total_cost()
-        if curr == False:
-            print("Your order is empty")
+def main():
+    while True:
+        name = input("Enter pizza name or type \"done\" to finsish your order: ")
+        name = name.lower()
+        if name == 'done':
+            curr = pizza.calculate_total_cost()
+            if curr == False:
+                print("Your order is empty")
+                continue
+            con = input("Would you like to place another order? (yes/no): ")
+            if con == "no":
+                print("Thank you for ordering from our pizza app!")
+                break
             continue
-        con = input("Would you like to place another order? (yes/no): ")
-        if con == "no":
-            print("Thank you for ordering from our pizza app!")
-            break
-        continue
-    size = input("Enter the size (small, medium, large): ")
-    size = size.lower()
-    pizza.add_pizza(name, size)
+        size = input("Enter the size (small, medium, large): ")
+        size = size.lower()
+        pizza.add_pizza(name, size)
+
+if __name__ == "__main__":
+    main()
