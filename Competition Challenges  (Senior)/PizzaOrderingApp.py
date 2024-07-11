@@ -16,17 +16,20 @@ class Order:
             print()
     
     def add_pizza(self, pizza_name, size):
-        if pizza_name not in self.menu or size not in self.menu[pizza_name]:
-            print("Not valid")
+        if pizza_name not in self.menu:
+            print("Not valid Pizza")
             return
-        self.order.append([pizza_name, size])
+        if size not in self.menu[pizza_name]:
+            print("Not valid size")
+            return
+        self.order.append([pizza_name, size, self.menu[pizza_name][size]])
     
     def calculate_total_cost(self):
         print("Your Order: ")
         total_cost = 0
-        for pizza_name, size in self.order:
+        for pizza_name, size, price in self.order:
             print(f"- {size} {pizza_name} pizza")
-            total_cost += self.menu[pizza_name][size]
+            total_cost += price
         print(f"Total cost is: {total_cost}")
         self.order.clear()
 
