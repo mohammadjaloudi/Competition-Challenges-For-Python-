@@ -24,7 +24,9 @@ class Order:
             return
         self.order.append([pizza_name, size, self.menu[pizza_name][size]])
     
-    def calculate_total_cost(self):
+    def calculate_total_cost(self) -> bool:
+        if len(self.order) == 0:
+            return False
         print("Your Order: ")
         total_cost = 0
         for pizza_name, size, price in self.order:
@@ -32,6 +34,7 @@ class Order:
             total_cost += price
         print(f"Total cost is: {total_cost}")
         self.order.clear()
+        return True
 
 print("Welcome to our pizza app")
 print("Here are our pizza options")
@@ -42,7 +45,10 @@ while True:
     name = input("Enter pizza name or type \"done\" to finsish your order: ")
     name = name.lower()
     if name == 'done':
-        pizza.calculate_total_cost()
+        curr = pizza.calculate_total_cost()
+        if curr == False:
+            print("Your order is empty")
+            continue
         con = input("Would you like to place another order? (yes/no): ")
         if con == "no":
             print("Thank you for ordering from our pizza app!")
