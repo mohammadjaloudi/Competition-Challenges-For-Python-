@@ -33,7 +33,7 @@ class Order:
         print(f"Total cost is: {total_cost}")
         self.order.clear()
 
-print("Welcome to out pizza app")
+print("Welcome to our pizza app")
 print("Here are our pizza options")
 pizza = Order()
 pizza.display_menu()
